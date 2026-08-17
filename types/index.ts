@@ -51,6 +51,20 @@ export interface ScheduledCourse {
   price: string;
 }
 
+export interface Service {
+  id: string;
+  number: string;
+  title: string;
+  desc: string;
+  longDesc?: string;
+  features: string[];
+  deliverables?: string[];
+  price: string;
+  bar: string;
+  glow: string;
+  dot: string;
+}
+
 export interface NavItem {
   label: string;
   href: string;

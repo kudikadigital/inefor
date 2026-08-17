@@ -1,91 +1,26 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { 
-  Building2, Users, BookOpen, Wrench, Network, BarChart3, 
-  ArrowRight, Shield, Trophy, Sparkles, CheckCircle, 
-  Phone, Mail, MessageCircle
+import {
+  ArrowRight, ArrowUpRight, MessageCircle, Mail,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Hero } from "@/components/sections/Hero";
 import { CTABanner } from "@/components/sections/CTABanner";
-import { EnrollmentModal } from "@/components/modals/EnrollmentModal";
 import { cn } from "@/lib/utils";
+import { services } from "@/data";
 
-const services = [
-  { 
-    icon: BookOpen, 
-    title: "Formação Empresarial", 
-    desc: "Programas in-company desenhados à medida das necessidades da sua empresa, ministrados nas instalações do cliente ou do Inefor.",
-    color: "blue",
-    features: ["Conteúdo personalizado", "Horários flexíveis", "Certificação reconhecida"],
-    price: "Sob consulta"
-  },
-  { 
-    icon: Users, 
-    title: "Consultoria em RH", 
-    desc: "Assessoria em gestão de recursos humanos, avaliação de desempenho, recrutamento e desenvolvimento de equipas.",
-    color: "green",
-    features: ["Recrutamento e seleção", "Avaliação de desempenho", "Desenvolvimento de lideranças"],
-    price: "Sob consulta"
-  },
-  { 
-    icon: Network, 
-    title: "Implementação de Redes", 
-    desc: "Projectos de infra-estrutura de rede, cabeamento estruturado, fibra óptica e configuração de equipamentos Cisco.",
-    color: "purple",
-    features: ["Cabeamento estruturado", "Fibra óptica", "Configuração Cisco"],
-    price: "Sob consulta"
-  },
-  { 
-    icon: Wrench, 
-    title: "Suporte Técnico", 
-    desc: "Serviços de help-desk, manutenção de sistemas, suporte a infra-estruturas de TI para empresas.",
-    color: "orange",
-    features: ["Help-desk 24/7", "Manutenção preventiva", "Suporte remoto"],
-    price: "Sob consulta"
-  },
-  { 
-    icon: Building2, 
-    title: "Parcerias Institucionais", 
-    desc: "Acordos de cooperação com empresas e instituições para formação contínua dos colaboradores.",
-    color: "indigo",
-    features: ["Programas de capacitação", "Descontos exclusivos", "Certificações conjuntas"],
-    price: "Sob consulta"
-  },
-  { 
-    icon: BarChart3, 
-    title: "Consultoria de Gestão", 
-    desc: "Assessoria empresarial em optimização de processos, planeamento estratégico e produtividade organizacional.",
-    color: "red",
-    features: ["Planeamento estratégico", "Optimização de processos", "Gestão de projetos"],
-    price: "Sob consulta"
-  },
+const differentiators = [
+  { title: "Experiência Comprovada", desc: "Mais de 10 anos de atuação no mercado angolano" },
+  { title: "Equipa Especializada", desc: "Profissionais certificados e experientes" },
+  { title: "Qualidade Garantida", desc: "Metodologias reconhecidas internacionalmente" },
+  { title: "Soluções Personalizadas", desc: "Atendimento às necessidades específicas" },
 ];
 
-const serviceColors: Record<string, string> = {
-  blue: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
-  green: "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20",
-  purple: "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20",
-  orange: "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20",
-  indigo: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20",
-  red: "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20",
-};
-
 export default function ServicosPage() {
-  const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleRequestQuote = (service: typeof services[0]) => {
-    setSelectedService(service);
-    setIsModalOpen(true);
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
-      
+
       {/* Hero Section */}
       <Hero
         badge="Soluções Empresariais"
@@ -99,7 +34,7 @@ export default function ServicosPage() {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12">
-        
+
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
           <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
@@ -108,60 +43,69 @@ export default function ServicosPage() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {services.map((service, idx) => {
-            const Icon = service.icon;
-            const colorClass = serviceColors[service.color];
-            
-            return (
-              <div
-                key={service.title}
-                className="group bg-card border border-border rounded-xl p-6 hover:shadow-xl hover:border-primary/20 transition-all duration-300"
-                style={{ animationDelay: `${idx * 0.1}s` }}
-              >
-                {/* Icon */}
-                <div className={cn(
-                  "w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110",
-                  colorClass
-                )}>
-                  <Icon className="w-6 h-6" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+          {services.map((service) => (
+            <Link
+              key={service.id}
+              href={`/servicos/${service.id}`}
+              className="group relative flex flex-col min-h-[360px] rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 transition-all duration-500 hover:shadow-2xl hover:shadow-black/30"
+            >
+              {/* Top accent bar — unique per service */}
+              <div className={cn("absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r", service.bar)} />
+
+              {/* Ambient glow — unique per service */}
+              <div className={cn(
+                "absolute -top-20 -right-20 w-56 h-56 rounded-full blur-3xl opacity-20 transition-opacity duration-500 group-hover:opacity-40 pointer-events-none",
+                service.glow
+              )} />
+
+              <div className="relative z-10 flex flex-col flex-1 p-8">
+                {/* Number + expand affordance */}
+                <div className="flex items-start justify-between mb-8">
+                  <span className="text-6xl font-extralight text-white/10 leading-none select-none tabular-nums">
+                    {service.number}
+                  </span>
+                  <div className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/60 opacity-0 -translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:text-white">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </div>
                 </div>
-                
+
                 {/* Title */}
-                <h3 className="text-xl font-medium text-foreground mb-2 group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-medium text-white mb-3 transition-colors">
                   {service.title}
                 </h3>
-                
+
                 {/* Description */}
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                <p className="text-white/60 text-sm leading-relaxed line-clamp-2">
                   {service.desc}
                 </p>
-                
-                {/* Features */}
-                <ul className="space-y-2 mb-6">
-                  {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <CheckCircle className="w-3.5 h-3.5 text-primary shrink-0" />
+
+                {/* Features — reveal on hover */}
+                <ul className={cn(
+                  "mt-4 space-y-1.5 overflow-hidden max-h-0 opacity-0 transition-all duration-300",
+                  "group-hover:max-h-32 group-hover:opacity-100"
+                )}>
+                  {service.features.map((feature) => (
+                    <li key={feature} className="flex items-center gap-2 text-xs text-white/50">
+                      <span className={cn("w-1 h-1 rounded-full shrink-0", service.dot)} />
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
-                
-                {/* Price and Button */}
-                <div className="flex items-center justify-between pt-4 border-t border-border">
-                  <span className="text-xs text-muted-foreground">{service.price}</span>
-                  <Button
-                    size="sm"
-                    onClick={() => handleRequestQuote(service)}
-                    className="gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300"
-                  >
-                    Solicitar
+
+                {/* Footer */}
+                <div className="mt-auto pt-6 flex items-center justify-between">
+                  <span className="text-[11px] text-white/40 uppercase tracking-wider">
+                    {service.price}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/5 px-3 py-1.5 text-sm font-medium text-white opacity-0 translate-y-2 backdrop-blur-md transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:bg-white/10 group-hover:border-white/50">
+                    Saber mais
                     <ArrowRight className="w-3 h-3" />
-                  </Button>
+                  </span>
                 </div>
               </div>
-            );
-          })}
+            </Link>
+          ))}
         </div>
 
         {/* Why Choose Us Section */}
@@ -175,25 +119,20 @@ export default function ServicosPage() {
               Oferecemos soluções personalizadas com qualidade e excelência
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Trophy, title: "Experiência Comprovada", desc: "Mais de 10 anos de atuação no mercado angolano" },
-              { icon: Users, title: "Equipa Especializada", desc: "Profissionais certificados e experientes" },
-              { icon: Shield, title: "Qualidade Garantida", desc: "Metodologias reconhecidas internacionalmente" },
-              { icon: Sparkles, title: "Soluções Personalizadas", desc: "Atendimento às necessidades específicas" },
-            ].map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <div key={idx} className="text-center p-6 bg-card border border-border rounded-xl hover:shadow-lg transition-all">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="font-medium text-foreground mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </div>
-              );
-            })}
+            {differentiators.map((item, idx) => (
+              <div
+                key={item.title}
+                className="text-center p-6 bg-card border border-border rounded-xl hover:shadow-lg hover:border-primary/20 transition-all duration-300"
+              >
+                <span className="block text-3xl font-extralight text-primary/25 mb-3 tabular-nums">
+                  0{idx + 1}
+                </span>
+                <h3 className="font-medium text-foreground mb-2">{item.title}</h3>
+                <p className="text-sm text-muted-foreground">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -208,18 +147,18 @@ export default function ServicosPage() {
               Metodologia comprovada para garantir os melhores resultados
             </p>
           </div>
-          
+
           <div className="relative">
             <div className="absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-gradient-to-b from-primary/20 via-primary/40 to-primary/20 hidden md:block" />
-            
+
             <div className="space-y-8 md:space-y-0 md:grid md:grid-cols-4 gap-6">
               {[
                 { step: "01", title: "Diagnóstico", desc: "Análise detalhada das necessidades" },
                 { step: "02", title: "Proposta", desc: "Plano de ação personalizado" },
                 { step: "03", title: "Execução", desc: "Implementação com qualidade" },
                 { step: "04", title: "Acompanhamento", desc: "Suporte e avaliação contínua" },
-              ].map((item, idx) => (
-                <div key={idx} className="relative text-center p-6 bg-card border border-border rounded-xl">
+              ].map((item) => (
+                <div key={item.step} className="relative text-center p-6 bg-card border border-border rounded-xl">
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
                     {item.step}
                   </div>
@@ -283,20 +222,6 @@ export default function ServicosPage() {
           },
         ]}
       />
-
-      {/* Modal de Solicitação */}
-      {selectedService && (
-        <EnrollmentModal
-          isOpen={isModalOpen}
-          onClose={() => {
-            setIsModalOpen(false);
-            setSelectedService(null);
-          }}
-          courseTitle={`Serviço: ${selectedService.title}`}
-          courseId="service"
-          coursePrice={selectedService.price}
-        />
-      )}
     </div>
   );
 }

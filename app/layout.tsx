@@ -10,7 +10,7 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Inefor — Centro de Excelência em Formação",
+  title: "Inefor - Inovação e Formação de Excelência",
   description:
     "Formação técnica, tecnológica e administrativa em Angola. Cursos certificados, treinamentos profissionais e eventos de alto impacto em Luanda.",
   keywords: ["formação", "cursos", "angola", "luanda", "cisco", "ccna", "gestão", "tecnologia"],
@@ -22,12 +22,8 @@ const themeScript = `
 (function() {
   try {
     var stored = localStorage.getItem('inefor-theme');
-    var preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    var theme = stored || preferred;
-    if (theme === 'dark') document.documentElement.classList.add('dark');
-  } catch(e) {
-    document.documentElement.classList.add('dark');
-  }
+    if (stored === 'dark') document.documentElement.classList.add('dark');
+  } catch(e) {}
 })();
 `;
 

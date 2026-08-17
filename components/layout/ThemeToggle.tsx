@@ -15,7 +15,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       className={cn(
         "w-9 h-9 rounded-full flex items-center justify-center transition-colors",
         "bg-transparent",
-        "text-text-muted hover:text-text-primary hover:border-border-strong",
+        "text-muted-foreground hover:text-foreground",
         className
       )}
     >

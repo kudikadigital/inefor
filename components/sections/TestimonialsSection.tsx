@@ -211,7 +211,7 @@ export function TestimonialsSection({
           ease: [0.16, 1, 0.3, 1],
           opacity: { duration: 0.8 }
         }}
-        className="container px-4 z-10 mx-auto"
+        className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10"
       >
         {/* Header */}
         <div className="flex flex-col items-center justify-center max-w-2xl mx-auto mb-16 text-center">

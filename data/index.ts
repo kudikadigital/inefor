@@ -4,6 +4,7 @@ import type {
   Event,
   ScheduledCourse,
   NavItem,
+  Service,
 } from "@/types";
 
 export const navItems: NavItem[] = [
@@ -559,6 +560,118 @@ export const scheduledCourses: ScheduledCourse[] = [
     price: "280.000 Kz",
   },
 ];
+
+export const services: Service[] = [
+  {
+    id: "formacao-empresarial",
+    number: "01",
+    title: "Formação Empresarial",
+    desc: "Programas in-company desenhados à medida das necessidades da sua empresa, ministrados nas instalações do cliente ou do Inefor.",
+    longDesc: "Desenhamos programas de formação totalmente adaptados à realidade da sua empresa — desde o diagnóstico das necessidades de capacitação até à execução e avaliação de resultados. As sessões podem decorrer nas suas instalações ou nos nossos centros, com horários compatíveis com a operação do negócio.",
+    features: ["Conteúdo personalizado", "Horários flexíveis", "Certificação reconhecida"],
+    deliverables: [
+      "Diagnóstico de necessidades formativas",
+      "Plano curricular à medida",
+      "Formadores certificados na área",
+      "Certificado de conclusão para os colaboradores",
+    ],
+    price: "Sob consulta",
+    bar: "from-blue-400 to-blue-600",
+    glow: "bg-blue-500",
+    dot: "bg-blue-400",
+  },
+  {
+    id: "consultoria-rh",
+    number: "02",
+    title: "Consultoria em RH",
+    desc: "Assessoria em gestão de recursos humanos, avaliação de desempenho, recrutamento e desenvolvimento de equipas.",
+    longDesc: "Apoiamos a sua empresa na estruturação e maturação da função de Recursos Humanos, desde processos de recrutamento e seleção até modelos de avaliação de desempenho e planos de desenvolvimento de lideranças, adaptados à dimensão e cultura da organização.",
+    features: ["Recrutamento e seleção", "Avaliação de desempenho", "Desenvolvimento de lideranças"],
+    deliverables: [
+      "Diagnóstico organizacional de RH",
+      "Desenho de processos de recrutamento",
+      "Modelo de avaliação de desempenho",
+      "Plano de desenvolvimento de lideranças",
+    ],
+    price: "Sob consulta",
+    bar: "from-emerald-400 to-emerald-600",
+    glow: "bg-emerald-500",
+    dot: "bg-emerald-400",
+  },
+  {
+    id: "implementacao-redes",
+    number: "03",
+    title: "Implementação de Redes",
+    desc: "Projectos de infra-estrutura de rede, cabeamento estruturado, fibra óptica e configuração de equipamentos Cisco.",
+    longDesc: "Executamos projectos completos de infra-estrutura de rede para empresas e instituições — do levantamento de requisitos ao cabeamento estruturado, instalação de fibra óptica e configuração de equipamentos Cisco, garantindo desempenho e segurança para a operação.",
+    features: ["Cabeamento estruturado", "Fibra óptica", "Configuração Cisco"],
+    deliverables: [
+      "Levantamento técnico e projecto de rede",
+      "Instalação de cabeamento estruturado",
+      "Instalação e testes de fibra óptica",
+      "Configuração e documentação de equipamentos",
+    ],
+    price: "Sob consulta",
+    bar: "from-violet-400 to-violet-600",
+    glow: "bg-violet-500",
+    dot: "bg-violet-400",
+  },
+  {
+    id: "suporte-tecnico",
+    number: "04",
+    title: "Suporte Técnico",
+    desc: "Serviços de help-desk, manutenção de sistemas, suporte a infra-estruturas de TI para empresas.",
+    longDesc: "Garantimos a continuidade operacional da sua infra-estrutura de TI através de serviços de help-desk, manutenção preventiva e suporte remoto ou presencial, com planos ajustados à criticidade dos seus sistemas.",
+    features: ["Help-desk 24/7", "Manutenção preventiva", "Suporte remoto"],
+    deliverables: [
+      "Atendimento help-desk 24/7",
+      "Plano de manutenção preventiva",
+      "Suporte remoto e presencial",
+      "Relatórios periódicos de desempenho",
+    ],
+    price: "Sob consulta",
+    bar: "from-amber-400 to-amber-600",
+    glow: "bg-amber-500",
+    dot: "bg-amber-400",
+  },
+  {
+    id: "parcerias-institucionais",
+    number: "05",
+    title: "Parcerias Institucionais",
+    desc: "Acordos de cooperação com empresas e instituições para formação contínua dos colaboradores.",
+    longDesc: "Estabelecemos acordos de cooperação de médio e longo prazo com empresas e instituições, criando planos de formação contínua para os colaboradores, com condições e certificações preferenciais para os parceiros.",
+    features: ["Programas de capacitação", "Descontos exclusivos", "Certificações conjuntas"],
+    deliverables: [
+      "Protocolo de cooperação institucional",
+      "Plano de formação contínua",
+      "Condições preferenciais para colaboradores",
+      "Certificações conjuntas Inefor-parceiro",
+    ],
+    price: "Sob consulta",
+    bar: "from-indigo-400 to-indigo-600",
+    glow: "bg-indigo-500",
+    dot: "bg-indigo-400",
+  },
+  {
+    id: "consultoria-gestao",
+    number: "06",
+    title: "Consultoria de Gestão",
+    desc: "Assessoria empresarial em optimização de processos, planeamento estratégico e produtividade organizacional.",
+    longDesc: "Apoiamos a gestão da sua empresa na optimização de processos internos, definição de planeamento estratégico e melhoria da produtividade organizacional, com metodologias adaptadas à realidade angolana.",
+    features: ["Planeamento estratégico", "Optimização de processos", "Gestão de projetos"],
+    deliverables: [
+      "Diagnóstico de processos actuais",
+      "Plano estratégico de médio prazo",
+      "Redesenho de processos críticos",
+      "Acompanhamento de indicadores de gestão",
+    ],
+    price: "Sob consulta",
+    bar: "from-rose-400 to-rose-600",
+    glow: "bg-rose-500",
+    dot: "bg-rose-400",
+  },
+];
+
 // Categorias de cursos para página empresarial
 export const corporateCourses = {
   telecomunicacoes: {
